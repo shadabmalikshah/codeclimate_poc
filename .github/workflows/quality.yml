@@ -27,9 +27,11 @@ jobs:
         run: npm install
 
       - name: Run tests with coverage
-        run: npm test -- --coverage
+        run: npm test
 
-      # ✅ Upload coverage using the token
+      - name: Debug coverage files (optional)
+        run: ls -R coverage || true
+
       - name: Upload coverage to Qlty
         uses: qltysh/qlty-action/coverage@v2
         with:
@@ -39,5 +41,5 @@ jobs:
       - name: Install Qlty CLI
         uses: qltysh/qlty-action/install@v2
 
-      - name: Run Qlty check (Quality & SCA)
+      - name: Run Qlty checks (SCA + Quality)
         run: qlty check
