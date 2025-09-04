@@ -50,5 +50,4 @@ jobs:
 
       # Step 8: Run Qlty checks (SCA, Maintainability, Duplication, Formatting)
       - name: Run Qlty checks
-        run: qlty check --all
- 
+        run: qlty check --all --verbose
