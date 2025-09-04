@@ -4,9 +4,9 @@
   "description": "Node.js static code analysis POC with tests and code coverage",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --check-coverage --lines 80 --branches 80 --functions 80 --statements 80 mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "qlity": "bash .qlty/qlty.sh"
+    "test": "nyc --reporter=lcov --reporter=text --check-coverage --lines 80 --branches 80 --functions 80 --statements 80 mocha",
+    "coverage": "nyc report --reporter=lcov > coverage/lcov.info",
+    "qlty": "bash .qlty/qlty.sh"
   },
   "author": "",
   "license": "MIT",
