@@ -4,7 +4,7 @@ version = 1
 exclude = ["node_modules/**", "coverage/**", "dist/**"]
 
 [plugins]
-osv-scanner = true        # Dependency vulnerability scanning (SCA)
+osv-scanner = true        # Dependency vulnerability scanning
 eslint = true             # Linting / code smells
 prettier = true           # Formatting rules
 duplication = true        # Detect copy-paste duplication
@@ -15,18 +15,16 @@ fail_severity = "medium"  # Fail pipeline only if medium+ vulns are found
 
 [eslint]
 paths = ["lib/**/*.js", "index.js"]
-config = ".eslintrc.json"
 
 [prettier]
-config = ".prettierrc"    # Optional, if you want custom formatting rules
+config = ".prettierrc"
 
 [duplication]
-paths = ["lib/**/*.js", "index.js"]
-min_lines = 5             # Flag code blocks >= 5 lines duplicated
+paths = ["lib/**/*.js"]
+min_lines = 3             # Lower threshold to catch processUser1 vs processUser2
 
 [coverage]
 line = 80
 branch = 70
 function = 70
 statement = 75
- 
