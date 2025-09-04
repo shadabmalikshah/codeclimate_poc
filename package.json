@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lodash": "4.17.4"
+    "lodash": "4.17.4"   // 🔴 vulnerable version for OSV scanner to catch
   },
   "devDependencies": {
     "chai": "^4.3.7",
