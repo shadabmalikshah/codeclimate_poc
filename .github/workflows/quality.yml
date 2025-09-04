@@ -1,21 +1,44 @@
-name: Quality Check
+name: Qlty Analysis
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  id-token: write   # Required for Qlty OIDC authentication
 
 jobs:
-  quality:
+  qlty-check:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+
       - name: Install dependencies
         run: npm install
-      - name: Run qlty.sh
-        run: bash .qlty/qlty.sh
+
+      # ✅ Run tests with coverage
+      - name: Run tests
+        run: npm test -- --coverage
+
+      # ✅ Upload coverage to Qlty Dashboard
+      - name: Upload coverage to Qlty
+        uses: qltysh/qlty-action/coverage@v2
+        with:
+          oidc: true
+          files: coverage/lcov.info
+
+      # ✅ Run Qlty quality + SCA scan
+      - name: Run Qlty Check
+        uses: qltysh/qlty-action/check@v2
+        with:
+          oidc: true
