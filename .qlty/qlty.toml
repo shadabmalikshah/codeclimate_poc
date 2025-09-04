@@ -1,0 +1,6 @@
+[tool.qlty]
+name = "my-poc"
+version = "1.0.0"
+
+[analysis]
+coverage_threshold = 80
