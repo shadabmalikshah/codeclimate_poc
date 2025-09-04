@@ -2,13 +2,13 @@ name: Qlty Analysis
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 permissions:
   contents: read
-  id-token: write   # Required for Qlty OIDC authentication
+  id-token: write
 
 jobs:
   qlty-check:
@@ -26,19 +26,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # ✅ Run tests with coverage
-      - name: Run tests
+      - name: Run tests with coverage
         run: npm test -- --coverage
 
-      # ✅ Upload coverage to Qlty Dashboard
       - name: Upload coverage to Qlty
         uses: qltysh/qlty-action/coverage@v2
         with:
           oidc: true
           files: coverage/lcov.info
 
-      # ✅ Run Qlty quality + SCA scan
-      - name: Run Qlty Check
-        uses: qltysh/qlty-action/check@v2
-        with:
-          oidc: true
+      - name: Install Qlty CLI
+        uses: qltysh/qlty-action/install@v2
+
+      - name: Run Qlty check (Quality & SCA)
+        run: qlty check
