@@ -1,6 +1,11 @@
-[tool.qlty]
-name = "my-poc"
-version = "1.0.0"
+version = 1
 
-[analysis]
-coverage_threshold = 80
+[plugins]
+osv-scanner = true        # Enable dependency vulnerability scanning
+eslint = true             # Optional: enable linting for JavaScript
+
+[osv-scanner]
+fail_severity = "high"    # Fail pipeline only on high/critical vulnerabilities
+
+[general]
+exclude = ["node_modules/**"]
