@@ -1,8 +1,13 @@
 {
-  "env": { "node": true, "es2021": true, "mocha": true },
+  "env": {
+    "node": true,
+    "es2021": true,
+    "mocha": true
+  },
   "extends": "eslint:recommended",
   "rules": {
     "no-unused-vars": "error",
-    "no-console": "warn"
+    "no-console": "warn",
+    "complexity": ["error", 4]
   }
 }
