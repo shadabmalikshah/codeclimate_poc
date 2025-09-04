@@ -4,25 +4,25 @@ version = 1
 exclude = ["node_modules/**", "coverage/**", "dist/**"]
 
 [plugins]
-osv-scanner = true
-eslint = true
-prettier = true
-duplication = true
-coverage = true
+osv-scanner = true        # Dependency vulnerability scanning (SCA)
+eslint = true             # Linting / code smells
+prettier = true           # Formatting rules
+duplication = true        # Detect copy-paste duplication
+coverage = true           # Use coverage reports uploaded from CI
 
 [osv-scanner]
-fail_severity = "medium"
+fail_severity = "medium"  # Fail pipeline only if medium+ vulns are found
 
 [eslint]
 paths = ["lib/**/*.js", "index.js"]
 config = ".eslintrc.json"
 
 [prettier]
-config = ".prettierrc"
+config = ".prettierrc"    # Optional, if you want custom formatting rules
 
 [duplication]
 paths = ["lib/**/*.js", "index.js"]
-min_lines = 5
+min_lines = 5             # Flag code blocks >= 5 lines duplicated
 
 [coverage]
 line = 80
