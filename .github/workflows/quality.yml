@@ -15,31 +15,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Step 2: Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Step 4: Run tests with coverage (nyc will generate coverage/lcov.info)
       - name: Run tests with coverage
         run: npm test
 
-      - name: Debug coverage files (optional)
+      # Step 5: Debug coverage (useful if upload fails)
+      - name: Debug coverage files
         run: ls -R coverage || true
 
+      # Step 6: Upload coverage to Qlty dashboard
       - name: Upload coverage to Qlty
         uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: coverage/lcov.info
 
+      # Step 7: Install Qlty CLI
       - name: Install Qlty CLI
         uses: qltysh/qlty-action/install@v2
 
-      - name: Run Qlty checks (SCA + Quality)
-        run: qlty check
+      # Step 8: Run Qlty checks (SCA, Maintainability, Duplication, Formatting)
+      - name: Run Qlty checks
+        run: qlty check --all
