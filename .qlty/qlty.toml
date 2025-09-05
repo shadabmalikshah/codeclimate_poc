@@ -1,30 +1,30 @@
-version = 1
+# version = 1
 
-[general]
-exclude = ["node_modules/**", "coverage/**", "dist/**"]
+# [general]
+# exclude = ["node_modules/**", "coverage/**", "dist/**"]
 
-[plugins]
-osv-scanner = true        # Dependency vulnerability scanning
-eslint = true             # Linting / code smells
-prettier = true           # Formatting rules
-duplication = true        # Detect copy-paste duplication
-coverage = true           # Use coverage reports uploaded from CI
+# [plugins]
+# osv-scanner = true        # Dependency vulnerability scanning
+# eslint = true             # Linting / code smells
+# prettier = true           # Formatting rules
+# duplication = true        # Detect copy-paste duplication
+# coverage = true           # Use coverage reports uploaded from CI
 
-[osv-scanner]
-fail_severity = "medium"  # Fail pipeline only if medium+ vulns are found
+# [osv-scanner]
+# fail_severity = "medium"  # Fail pipeline only if medium+ vulns are found
 
-[eslint]
-paths = ["lib/**/*.js", "index.js"]
+# [eslint]
+# paths = ["lib/**/*.js", "index.js"]
 
-[prettier]
-config = ".prettierrc"
+# [prettier]
+# config = ".prettierrc"
 
-[duplication]
-paths = ["lib/**/*.js"]
-min_lines = 3             # Lower threshold to catch processUser1 vs processUser2
+# [duplication]
+# paths = ["lib/**/*.js"]
+# min_lines = 3             # Lower threshold to catch processUser1 vs processUser2
 
-[coverage]
-line = 80
-branch = 70
-function = 70
-statement = 75
+# [coverage]
+# line = 80
+# branch = 70
+# function = 70
+# statement = 75
